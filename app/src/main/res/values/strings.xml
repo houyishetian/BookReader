@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BookReader</string>
+    <string name="splash_name">Book Reader</string>
 </resources>

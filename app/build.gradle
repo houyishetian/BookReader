@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -21,6 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    //data binding
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
@@ -32,4 +36,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt  "com.google.dagger:dagger-compiler:$dagger_version"
+
+    //viewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$viewModel_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$viewModel_version"
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:4.5.1'
 }

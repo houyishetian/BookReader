@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">BookReader</string>
     <string name="splash_name">Book Reader</string>
+    <string name="main_bottom_menu_scan">扫描</string>
+    <string name="main_bottom_menu_search">搜索</string>
+    <string name="main_bottom_menu_bookmark">书签</string>
 </resources>

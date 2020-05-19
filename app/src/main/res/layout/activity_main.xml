@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="lin.com.bookreader.viewmodels.MainActivityViewModel" />
@@ -14,23 +15,35 @@
         android:layout_height="match_parent"
         tools:context=".activity.MainActivity">
 
-        <Button
-            android:id="@+id/save_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{(v)->viewModel.savedValueClicked(v)}"
-            android:text="save value"
+        <fragment
+            android:id="@+id/main_fragment_container"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/main_seperate_line"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/main_navigation_graph" />
 
-        <Button
-            android:id="@+id/get_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{(v)->viewModel.getValueClicked(v)}"
-            android:text="get value"
+        <View
+            android:id="@+id/main_seperate_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toTopOf="@id/main_bottom_navitaion_view"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/save_value" />
+            app:layout_constraintTop_toBottomOf="@+id/main_fragment_container" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_bottom_navitaion_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/navigation_bottom_main_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

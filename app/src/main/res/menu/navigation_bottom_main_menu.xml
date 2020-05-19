@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mainScanFragment"
+        android:icon="@drawable/vector_drawable_main_scan"
+        android:title="@string/main_bottom_menu_scan" />
+    <item
+        android:id="@+id/mainSearchFragment"
+        android:icon="@drawable/vector_drawable_main_search"
+        android:title="@string/main_bottom_menu_search" />
+    <item
+        android:id="@+id/mainBookMarkFragment"
+        android:icon="@drawable/vector_drawable_main_bookmark"
+        android:title="@string/main_bottom_menu_bookmark" />
+</menu>

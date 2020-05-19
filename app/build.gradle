@@ -46,5 +46,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$viewModel_version"
 
     //Timber
-    implementation 'com.jakewharton.timber:timber:4.5.1'
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    //navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
 }

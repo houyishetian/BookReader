@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation_graph"
+    app:startDestination="@id/mainScanFragment">
+
+    <fragment
+        android:id="@+id/mainScanFragment"
+        android:name="lin.com.bookreader.fragment.MainScanFragment"
+        android:label="MainScanFragment" />
+    <fragment
+        android:id="@+id/mainSearchFragment"
+        android:name="lin.com.bookreader.fragment.MainSearchFragment"
+        android:label="MainSearchFragment" />
+    <fragment
+        android:id="@+id/mainBookMarkFragment"
+        android:name="lin.com.bookreader.fragment.MainBookMarkFragment"
+        android:label="MainBookMarkFragment" />
+</navigation>

@@ -22,6 +22,10 @@ class MainActivity :
 
     override fun setDatabindingVaribles() {
         databinding.viewModel = viewModel
+    }
+
+    override fun onResume() {
+        super.onResume()
         main_bottom_navitaion_view.setupWithNavController(
             Navigation.findNavController(
                 this,

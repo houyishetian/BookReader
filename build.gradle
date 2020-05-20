@@ -8,6 +8,7 @@ buildscript {
         viewModel_version = '2.2.0'
         timber_version = '4.5.1'
         navigation_version = '2.2.2'
+        okhttp_version = '4.7.1'
     }
     repositories {
         google()

@@ -15,10 +15,10 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Named
 
 @Module
-class RetrofitModule {
+class RetrofitModule(private val baseUrl:String) {
 
     @Provides
-    fun provideBaseUrl(): String = "https://www.it1352.com/"
+    fun provideBaseUrl(): String = baseUrl
 
     @Named("connTimeout")
     @Provides

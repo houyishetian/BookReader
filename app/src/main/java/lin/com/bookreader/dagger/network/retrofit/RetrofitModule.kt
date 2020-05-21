@@ -2,6 +2,7 @@ package lin.com.bookreader.dagger.network.retrofit
 
 import dagger.Module
 import dagger.Provides
+import lin.com.bookreader.models.BookReaderApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -16,30 +17,35 @@ import javax.inject.Named
 
 @Module
 class RetrofitModule(private val baseUrl:String) {
+    companion object {
+        private const val connTimeoutKey = "connTimeout"
+        private const val readTimeoutKey = "readTimeout"
+        private const val writeTimeoutKey = "writeTimeout"
+    }
 
     @Provides
     fun provideBaseUrl(): String = baseUrl
 
-    @Named("connTimeout")
+    @Named(connTimeoutKey)
     @Provides
-    fun provideConnTimeout(): Long = 60
+    fun provideConnTimeout(): Long = 10
 
-    @Named("readTimeout")
+    @Named(readTimeoutKey)
     @Provides
-    fun provideReadTimeout(): Long = 60
+    fun provideReadTimeout(): Long = 10
 
-    @Named("writeTimeout")
+    @Named(writeTimeoutKey)
     @Provides
-    fun provideWriteTimeout(): Long = 60
+    fun provideWriteTimeout(): Long = 10
 
     @Provides
     fun provideTimeUnit():TimeUnit = TimeUnit.SECONDS
 
     @Provides
     fun provideOkHttpClient(
-        @Named("connTimeout") connTimeout: Long,
-        @Named("readTimeout") readTimeout: Long,
-        @Named("writeTimeout") writeTimeout: Long,
+        @Named(connTimeoutKey) connTimeout: Long,
+        @Named(readTimeoutKey) readTimeout: Long,
+        @Named(writeTimeoutKey) writeTimeout: Long,
         timeUnit:TimeUnit,
         interceptor: Interceptor
     ): OkHttpClient {
@@ -89,4 +95,8 @@ class RetrofitModule(private val baseUrl:String) {
 
     @Provides
     fun provideConverterFactory(): Converter.Factory = GsonConverterFactory.create()
+
+    @Provides
+    fun provideBookReaderApiService(retrofit: Retrofit): BookReaderApiService =
+        retrofit.create(BookReaderApiService::class.java)
 }

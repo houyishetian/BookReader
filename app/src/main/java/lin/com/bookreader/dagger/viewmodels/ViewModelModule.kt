@@ -6,6 +6,7 @@ import dagger.Provides
 import lin.com.bookreader.dagger.scope.FragmentScope
 import lin.com.bookreader.extensions.createViewModel
 import lin.com.bookreader.viewmodels.MainScanFragmentViewModel
+import lin.com.bookreader.viewmodels.MainSearchFragmentViewModel
 
 @Module
 class ViewModelModule(val activity: FragmentActivity) {
@@ -15,4 +16,8 @@ class ViewModelModule(val activity: FragmentActivity) {
     fun provideMainScanFragmentViewModel(): MainScanFragmentViewModel =
         activity.createViewModel(MainScanFragmentViewModel::class.java)
 
+    @FragmentScope
+    @Provides
+    fun provideMainSearchFragmentViewModel(): MainSearchFragmentViewModel =
+        activity.createViewModel(MainSearchFragmentViewModel::class.java)
 }

@@ -1,19 +1,18 @@
 package lin.com.bookreader.fragment
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import lin.com.bookreader.R
+import lin.com.bookreader.databinding.FragmentMainSearchBinding
+import lin.com.bookreader.extensions.buildComponent
+import lin.com.bookreader.viewmodels.MainSearchFragmentViewModel
 
-class MainSearchFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main_search, container, false)
+class MainSearchFragment : BaseFragment<FragmentMainSearchBinding,MainSearchFragmentViewModel>(R.layout.fragment_main_search) {
+    override fun initDaggerInjector() {
+        buildComponent().inject(this)
     }
+
+    override fun setDatabindingVaribles() {
+
+    }
+
+
 }

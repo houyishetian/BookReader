@@ -1,7 +1,6 @@
-package lin.com.bookreader.dagger
+package lin.com.bookreader.dagger.app
 
 import android.content.Context
-import lin.com.bookreader.dagger.app.AppComponent
 import java.lang.IllegalArgumentException
 
 interface AppComponentProvider {

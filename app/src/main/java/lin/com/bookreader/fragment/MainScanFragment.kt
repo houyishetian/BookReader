@@ -1,7 +1,7 @@
 package lin.com.bookreader.fragment
 
 import lin.com.bookreader.R
-import lin.com.bookreader.dagger.AppComponentHolder
+import lin.com.bookreader.dagger.app.AppComponentHolder
 import lin.com.bookreader.dagger.viewmodels.DaggerViewModelComponent
 import lin.com.bookreader.dagger.viewmodels.ViewModelModule
 import lin.com.bookreader.databinding.FragmentMainScanBinding

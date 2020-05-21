@@ -1,7 +1,7 @@
 package lin.com.bookreader.application
 
 import android.app.Application
-import lin.com.bookreader.dagger.AppComponentProvider
+import lin.com.bookreader.dagger.app.AppComponentProvider
 import lin.com.bookreader.dagger.app.AppComponent
 import lin.com.bookreader.dagger.app.AppModule
 import lin.com.bookreader.dagger.app.DaggerAppComponent

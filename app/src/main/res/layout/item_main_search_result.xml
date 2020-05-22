@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="book"
+            type="lin.com.bookreader.entity.Book" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/book_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:text="@{book.bookName}"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toStartOf="@+id/guide_vertical1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_vertical1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/book_author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@{book.authorName}"
+            android:textColor="#848484"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@id/guide_vertical2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/book_name" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_vertical2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.375" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/book_lastUpdate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@{book.lastUpdate}"
+            android:textColor="#848484"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@id/guide_vertical1"
+            app:layout_constraintStart_toEndOf="@id/guide_vertical2"
+            app:layout_constraintTop_toTopOf="@id/book_author" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/book_lastChapter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{book.lastChapter}"
+            app:layout_constraintEnd_toStartOf="@id/guide_vertical1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/book_author" />
+
+        <Button
+            android:id="@+id/book_download"
+            style="@style/BlueBorderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下载"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guide_vertical1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

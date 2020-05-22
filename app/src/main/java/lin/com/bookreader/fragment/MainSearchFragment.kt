@@ -11,7 +11,7 @@ class MainSearchFragment : BaseFragment<FragmentMainSearchBinding,MainSearchFrag
     }
 
     override fun setDatabindingVaribles() {
-
+        databinding.viewModel = viewModel
     }
 
 

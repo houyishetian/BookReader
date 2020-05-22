@@ -1,47 +1,21 @@
 package lin.com.bookreader.viewmodels
 
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import lin.com.bookreader.dagger.network.retrofit.BaseUrlMap
-import lin.com.bookreader.dagger.network.retrofit.DaggerRetrofitComponent
-import lin.com.bookreader.dagger.network.retrofit.RetrofitModule
-import lin.com.bookreader.extensions.readLinesOfHtml
-import lin.com.bookreader.models.BookReaderApiService
-import okhttp3.ResponseBody
-import rx.Observer
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
-import timber.log.Timber
-import javax.inject.Inject
+import lin.com.bookreader.entity.Book
 
 class MainSearchFragmentViewModel : ViewModel() {
 
-    @Inject
-    lateinit var bookReaderApiService: BookReaderApiService
-
-    init {
-        DaggerRetrofitComponent.builder()
-            .retrofitModule(RetrofitModule(BaseUrlMap.getBaseUrl(BaseUrlMap.WEB_Test)))
-            .build().inject(this)
-    }
-
-    fun onClick() {
-        bookReaderApiService.getResponse("/130_130510/").subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread()).subscribe(
-            object : Observer<ResponseBody> {
-                override fun onError(e: Throwable?) {
-                    Timber.e("onError")
-                    e?.printStackTrace()
-                }
-
-                override fun onNext(t: ResponseBody?) {
-                    Timber.e("onNext")
-                    Timber.e("msg:${t?.readLinesOfHtml().toString()}")
-                }
-
-                override fun onCompleted() {
-                    Timber.e("onCompleted")
-                }
-            }
+    val list = MutableLiveData<List<Book>>(
+        listOf(
+            Book("起点", "仙逆", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
+            Book("起点", "仙逆", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
+            Book("起点", "仙逆", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", "")
         )
+    )
+
+    fun bind(binding: ViewDataBinding, data: Any, positon: Int) {
+
     }
 }

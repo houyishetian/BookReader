@@ -4,19 +4,24 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="lin.com.bookreader.viewmodels.MainSearchFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search Fragment"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:items="@{viewModel.list}"
+            app:layoutManager="@string/linear_layout_manager"
+            app:itemLayout="@{@layout/item_main_search_result}"
+            app:onBindItem="@{(binding,data,positon)->viewModel.bind(binding,data,positon)}"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

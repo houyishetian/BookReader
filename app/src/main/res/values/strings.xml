@@ -10,4 +10,10 @@
 
     <string name="start_read">阅读</string>
     <string name="start_download">下载</string>
+
+    <string name="previous_page">上一页</string>
+    <string name="next_page">下一页</string>
+
+    <string name="search_book_hint">书名/作者名</string>
+    <string name="search">搜索</string>
 </resources>

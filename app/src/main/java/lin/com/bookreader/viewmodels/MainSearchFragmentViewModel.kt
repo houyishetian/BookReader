@@ -4,15 +4,31 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import lin.com.bookreader.adapter.BookDividerItemDecoration
+import lin.com.bookreader.dagger.network.retrofit.BaseUrlMap
+import lin.com.bookreader.databinding.ItemDialogSelectBinding
 import lin.com.bookreader.databinding.ItemMainSearchResultBinding
 import lin.com.bookreader.entity.Book
+import lin.com.bookreader.entity.DialogBottomButtonBean
+import lin.com.bookreader.entity.DialogSelectBean
+import lin.com.bookreader.entity.DialogSelectItemBean
 import timber.log.Timber
 
 class MainSearchFragmentViewModel : ViewModel() {
 
     val list = MutableLiveData<List<Book>>(
         listOf(
-            Book("起点", "仙逆2000", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
+            Book(
+                "起点",
+                "仙逆2000",
+                "耳根",
+                "200",
+                "8.0",
+                3000,
+                "第2088章 蓦然回首（大结局）",
+                "2016-01-30",
+                "",
+                ""
+            ),
             Book("起点", "凡人修仙传", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
             Book("起点", "蛊真人", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
             Book("起点", "仙逆2", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
@@ -48,7 +64,18 @@ class MainSearchFragmentViewModel : ViewModel() {
             Book("起点", "仙逆2", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
             Book("起点", "凡人修仙传", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
             Book("起点", "蛊真人", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
-            Book("起点", "仙逆2989", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
+            Book(
+                "起点",
+                "仙逆2989",
+                "耳根",
+                "200",
+                "8.0",
+                3000,
+                "第2088章 蓦然回首（大结局）",
+                "2016-01-30",
+                "",
+                ""
+            ),
             Book("起点", "凡人修仙传", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
             Book("起点", "蛊真人", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
             Book("起点", "仙逆2", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
@@ -80,14 +107,46 @@ class MainSearchFragmentViewModel : ViewModel() {
             Book("起点", "蛊真人", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
             Book("起点", "仙逆2", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
             Book("起点", "凡人修仙传", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
-            Book("起点", "蛊真人986", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
+            Book(
+                "起点",
+                "蛊真人986",
+                "耳根",
+                "200",
+                "8.0",
+                3000,
+                "第2088章 蓦然回首（大结局）",
+                "2016-01-30",
+                "",
+                ""
+            ),
             Book("起点", "仙逆2", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
             Book("起点", "凡人修仙传", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", ""),
             Book("起点", "蛊真人", "耳根", "200", "8.0", 3000, "第2088章 蓦然回首（大结局）", "2016-01-30", "", "")
         )
     )
 
+    val webTypeList = BaseUrlMap.map.map { DialogSelectItemBean(it.key, it.value.first) }
+
     val itemDecoration = BookDividerItemDecoration()
+
+    val leftBtn = DialogBottomButtonBean("上一页", true) {
+        Timber.e("click left button")
+    }
+
+    val rightBtn = DialogBottomButtonBean("下一页", true) {
+        Timber.e("click right button")
+    }
+
+    val dialogSelectBean = DialogSelectBean(
+        "请选择", leftBtn, rightBtn, webTypeList, BookDividerItemDecoration()
+    ) { dataBinding, data, position ->
+        (dataBinding as ItemDialogSelectBinding).itemDialogName.setOnClickListener {
+            Timber.e("onClick:${(data as DialogSelectItemBean).name}")
+            webType.postValue(data.name)
+        }
+    }
+
+    val webType = MutableLiveData<String>(webTypeList.first().name)
 
     fun bind(binding: ViewDataBinding, data: Any, positon: Int) {
         (binding as ItemMainSearchResultBinding).bookName.setOnClickListener {

@@ -11,7 +11,7 @@ import me.drakeet.multitype.ItemViewBinder
 
 class BookItemViewBinder<T, DB : ViewDataBinding>(
     private @LayoutRes val layoutId: Int,
-    private val binder: FunctionForBinder<DB, T>
+    private val binder: FunctionForBinder<DB, T>?
 ) :
     ItemViewBinder<T, BookViewHolder<DB>>() {
 
@@ -22,8 +22,8 @@ class BookItemViewBinder<T, DB : ViewDataBinding>(
         BookViewHolder(DataBindingUtil.inflate(inflater, layoutId, parent, false))
 
     override fun onBindViewHolder(viewHolder: BookViewHolder<DB>, t: T) {
-        viewHolder.databindng.setVariable(BR.book, t)
-        binder.bind(viewHolder.databindng, t, viewHolder.adapterPosition)
+        viewHolder.databindng.setVariable(BR.bean, t)
+        binder?.bind(viewHolder.databindng, t, viewHolder.adapterPosition)
         viewHolder.databindng.executePendingBindings()
     }
 }

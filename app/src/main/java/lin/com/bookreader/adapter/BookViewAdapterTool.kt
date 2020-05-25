@@ -15,7 +15,7 @@ class BookViewAdapterTool {
         fun <DB : ViewDataBinding> setItemLayoutAndOnBindItem(
             view: RecyclerView,
             resId: Int,
-            binder: FunctionForBinder<DB, Any>
+            binder: FunctionForBinder<DB, Any>?
         ) {
             getAdapter(view).register(Any::class.java, BookItemViewBinder(resId, binder))
         }
@@ -32,7 +32,7 @@ class BookViewAdapterTool {
         fun <DB : ViewDataBinding, T> setLinkerAndOnBindItem(
             view: RecyclerView,
             linkers: List<Linker>,
-            binder: FunctionForBinder<DB, Any>
+            binder: FunctionForBinder<DB, Any>?
         ) {
             getAdapter(view).let {
                 val binders = linkers.map { it.layoutId }.map { BookItemViewBinder(it, binder) }

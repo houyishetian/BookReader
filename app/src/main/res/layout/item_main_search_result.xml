@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="book"
+            name="bean"
             type="lin.com.bookreader.entity.Book" />
     </data>
 
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="middle"
             android:singleLine="true"
-            android:text="@{book.bookName}"
+            android:text="@{bean.bookName}"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="22sp"
             app:layout_constraintEnd_toStartOf="@+id/guide_vertical1"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:gravity="center"
-            android:text="@{book.authorName}"
+            android:text="@{bean.authorName}"
             android:textColor="#848484"
             android:textSize="13sp"
             app:layout_constraintEnd_toStartOf="@id/guide_vertical2"
@@ -58,7 +58,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:text="@{book.lastUpdate}"
+            android:text="@{bean.lastUpdate}"
             android:textColor="#848484"
             android:textSize="13sp"
             app:layout_constraintEnd_toStartOf="@id/guide_vertical1"
@@ -70,7 +70,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@{book.lastChapter}"
+            android:text="@{bean.lastChapter}"
             app:layout_constraintEnd_toStartOf="@id/guide_vertical1"
             app:layout_constraintStart_toStartOf="@+id/book_name"
             app:layout_constraintTop_toBottomOf="@+id/book_author" />

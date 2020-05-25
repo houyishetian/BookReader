@@ -11,16 +11,65 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/search_web_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="笔趣阁"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/search_input_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/search_input_layout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_input_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            app:layout_constraintEnd_toStartOf="@id/search_search_btn"
+            app:layout_constraintStart_toEndOf="@id/search_web_name"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:hint="书名/作者名"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/search_search_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/search_input_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="15dp"
+            app:layout_constraintStart_toEndOf="@id/search_input_layout"
+            app:layout_constraintTop_toTopOf="@+id/search_input_layout" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv"
+            android:id="@+id/search_rcv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             app:itemDecoration="@{viewModel.itemDecoration}"
             app:itemLayout="@{@layout/item_main_search_result}"
             app:items="@{viewModel.list}"
             app:layoutManager="@string/linear_layout_manager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_input_layout"
+
             app:onBindItem="@{(binding,data,positon)->viewModel.bind(binding,data,positon)}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

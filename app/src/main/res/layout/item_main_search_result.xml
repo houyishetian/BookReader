@@ -11,7 +11,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_vertical0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/book_name"
@@ -23,7 +32,7 @@
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="22sp"
             app:layout_constraintEnd_toStartOf="@+id/guide_vertical1"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guide_vertical0"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -43,7 +52,7 @@
             android:textColor="#848484"
             android:textSize="13sp"
             app:layout_constraintEnd_toStartOf="@id/guide_vertical2"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/book_name"
             app:layout_constraintTop_toBottomOf="@+id/book_name" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -72,15 +81,15 @@
             android:layout_marginTop="5dp"
             android:text="@{book.lastChapter}"
             app:layout_constraintEnd_toStartOf="@id/guide_vertical1"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/book_name"
             app:layout_constraintTop_toBottomOf="@+id/book_author" />
 
         <Button
-            android:id="@+id/book_download"
+            android:id="@+id/book_read"
             style="@style/BlueBorderButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="下载"
+            android:text="@string/start_read"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guide_vertical1"
             app:layout_constraintTop_toTopOf="parent" />

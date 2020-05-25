@@ -7,4 +7,7 @@
 
     <string name="linear_layout_manager">androidx.recyclerview.widget.LinearLayoutManager</string>
     <string name="grid_layout_manager">androidx.recyclerview.widget.GridLayoutManager</string>
+
+    <string name="start_read">阅读</string>
+    <string name="start_download">下载</string>
 </resources>

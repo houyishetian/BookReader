@@ -17,11 +17,11 @@
             android:id="@+id/rcv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:itemDecoration="@{viewModel.itemDecoration}"
+            app:itemLayout="@{@layout/item_main_search_result}"
             app:items="@{viewModel.list}"
             app:layoutManager="@string/linear_layout_manager"
-            app:itemLayout="@{@layout/item_main_search_result}"
-            app:onBindItem="@{(binding,data,positon)->viewModel.bind(binding,data,positon)}"
-            />
+            app:onBindItem="@{(binding,data,positon)->viewModel.bind(binding,data,positon)}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

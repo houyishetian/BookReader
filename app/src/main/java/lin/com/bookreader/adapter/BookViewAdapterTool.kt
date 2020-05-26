@@ -52,9 +52,9 @@ class BookViewAdapterTool {
 
         @JvmStatic
         @BindingAdapter(value = ["items"], requireAll = false)
-        fun <T> setItems(view: RecyclerView, items: List<T>) {
+        fun <T> setItems(view: RecyclerView, items: List<T>?) {
             getAdapter(view).run {
-                this.items = items
+                this.items = items ?: listOf<T>()
                 notifyDataSetChanged()
             }
         }

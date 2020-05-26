@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import lin.com.bookreader.BR
 import me.drakeet.multitype.ItemViewBinder
 
-class BookItemViewBinder<T, DB : ViewDataBinding>(
+class BookItemViewBinder<DB : ViewDataBinding, T : Any>(
     private @LayoutRes val layoutId: Int,
-    private val binder: FunctionForBinder<DB, T>?
+    private val binder: FunctionForBinder?
 ) :
     ItemViewBinder<T, BookViewHolder<DB>>() {
 
@@ -31,6 +31,6 @@ class BookItemViewBinder<T, DB : ViewDataBinding>(
 class BookViewHolder<DB : ViewDataBinding>(val databindng: DB) :
     RecyclerView.ViewHolder(databindng.root)
 
-interface FunctionForBinder<DB : ViewDataBinding, T> {
-    fun bind(a: DB, b: T, c: Int)
+interface FunctionForBinder {
+    fun bind(databinding: ViewDataBinding, itemData: Any, position: Int)
 }

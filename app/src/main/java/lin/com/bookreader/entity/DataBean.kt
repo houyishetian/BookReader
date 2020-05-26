@@ -1,8 +1,8 @@
 package lin.com.bookreader.entity
 
 import android.view.View
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import lin.com.bookreader.adapter.FunctionForBinder
 
 data class Book(
     val web: String,
@@ -18,21 +18,15 @@ data class Book(
 )
 
 data class DialogSelectBean(
-    val title: String,
-    val leftBtn: DialogBottomButtonBean,
-    val rightBtn: DialogBottomButtonBean,
     val list: List<DialogSelectItemBean>,
+    val leftBtn: DialogBottomButtonBean?,
+    val rightBtn: DialogBottomButtonBean?,
     val itemDecoration: RecyclerView.ItemDecoration?,
-    private var binder: ((dataBinding: ViewDataBinding, data: Any, position: Int) -> Unit)? = null
-) {
-    fun bind(binding: ViewDataBinding, data: Any, positon: Int) {
-        binder?.invoke(binding, data, positon)
-    }
-}
+    val binder: FunctionForBinder? = null
+)
 
 data class DialogBottomButtonBean(
-    val text: String,
-    val visible: Boolean,
+    val visible: Boolean = false,
     private val clickListener: ((view: View) -> Unit)? = null
 ) {
     fun onClick(view: View) {

@@ -12,12 +12,15 @@ class BookViewAdapterTool {
 
         @JvmStatic
         @BindingAdapter(value = ["itemLayout", "onBindItem"], requireAll = false)
-        fun <DB : ViewDataBinding> setItemLayoutAndOnBindItem(
+        fun setItemLayoutAndOnBindItem(
             view: RecyclerView,
             resId: Int,
-            binder: FunctionForBinder<DB, Any>?
+            binder: FunctionForBinder?
         ) {
-            getAdapter(view).register(Any::class.java, BookItemViewBinder(resId, binder))
+            getAdapter(view).register(
+                Any::class.java,
+                BookItemViewBinder<ViewDataBinding, Any>(resId, binder)
+            )
         }
 
         private fun getAdapter(view: RecyclerView): MultiTypeAdapter = when (view.adapter) {
@@ -29,13 +32,14 @@ class BookViewAdapterTool {
 
         @JvmStatic
         @BindingAdapter(value = ["linkers", "onBindItem"], requireAll = false)
-        fun <DB : ViewDataBinding, T> setLinkerAndOnBindItem(
+        fun setLinkerAndOnBindItem(
             view: RecyclerView,
             linkers: List<Linker>,
-            binder: FunctionForBinder<DB, Any>?
+            binder: FunctionForBinder?
         ) {
             getAdapter(view).let {
-                val binders = linkers.map { it.layoutId }.map { BookItemViewBinder(it, binder) }
+                val binders = linkers.map { it.layoutId }
+                    .map { BookItemViewBinder<ViewDataBinding, Any>(it, binder) }
                     .toTypedArray()
                 it.register(Any::class.java).let {
                     // the method "to" is as same as an extension method in Tuples which has a high priority, so here use reflect way to invoke.

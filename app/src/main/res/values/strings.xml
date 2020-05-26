@@ -16,4 +16,5 @@
 
     <string name="search_book_hint">书名/作者名</string>
     <string name="search">搜索</string>
+    <string name="please_select">请选择</string>
 </resources>

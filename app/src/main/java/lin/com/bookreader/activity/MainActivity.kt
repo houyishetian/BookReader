@@ -1,26 +1,59 @@
 package lin.com.bookreader.activity
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
-import androidx.navigation.ui.setupWithNavController
+import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
 import lin.com.bookreader.R
+import lin.com.bookreader.adapter.ViewPagerAdapter
+import lin.com.bookreader.fragment.MainBookMarkFragment
+import lin.com.bookreader.fragment.MainScanFragment
+import lin.com.bookreader.fragment.MainSearchFragment
 
 class MainActivity : AppCompatActivity() {
+
+    private var menuItem: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initView()
     }
 
-    override fun onResume() {
-        super.onResume()
-        main_bottom_navitaion_view.setupWithNavController(
-            Navigation.findNavController(
-                this,
-                R.id.main_fragment_container
-            )
+    private fun initView() {
+        val fragmentList = listOf(
+            MainScanFragment(), MainSearchFragment(), MainBookMarkFragment()
         )
+        main_view_pager.adapter = ViewPagerAdapter(fragmentList, supportFragmentManager)
+        main_view_pager.offscreenPageLimit = 2
+        main_view_pager.currentItem = 0
+        main_bottom_navitaion_view.menu.getItem(0).setChecked(true)
+
+        main_view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+                menuItem?.setChecked(false)
+                menuItem = main_bottom_navitaion_view.menu.getItem(position)
+                menuItem?.setChecked(true)
+            }
+
+        })
+        main_bottom_navitaion_view.setOnNavigationItemSelectedListener {
+            menuItem = it
+            when (menuItem?.itemId) {
+                R.id.mainScanFragment -> main_view_pager.currentItem = 0
+                R.id.mainSearchFragment -> main_view_pager.currentItem = 1
+                R.id.mainBookMarkFragment -> main_view_pager.currentItem = 2
+            }
+            return@setOnNavigationItemSelectedListener false
+        }
     }
 }

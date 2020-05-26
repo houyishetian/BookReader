@@ -16,15 +16,12 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Named
 
 @Module
-class RetrofitModule(private val baseUrl:String) {
+class RetrofitModule {
     companion object {
         private const val connTimeoutKey = "connTimeout"
         private const val readTimeoutKey = "readTimeout"
         private const val writeTimeoutKey = "writeTimeout"
     }
-
-    @Provides
-    fun provideBaseUrl(): String = baseUrl
 
     @Named(connTimeoutKey)
     @Provides
@@ -77,13 +74,11 @@ class RetrofitModule(private val baseUrl:String) {
 
     @Provides
     fun provideRetrofit(
-        baseUrl: String,
         okhttpClient: OkHttpClient,
         callAdapterFactory: CallAdapter.Factory,
         converterFactory: Converter.Factory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
             .client(okhttpClient)
             .addCallAdapterFactory(callAdapterFactory)
             .addConverterFactory(converterFactory)

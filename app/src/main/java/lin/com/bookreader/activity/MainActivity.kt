@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
 
     private var menuItem: MenuItem? = null
 
+    private val defaultItem = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         )
         main_view_pager.adapter = ViewPagerAdapter(fragmentList, supportFragmentManager)
         main_view_pager.offscreenPageLimit = 2
-        main_view_pager.currentItem = 0
-        main_bottom_navitaion_view.menu.getItem(0).setChecked(true)
+        main_view_pager.currentItem = defaultItem
+        main_bottom_navitaion_view.menu.getItem(defaultItem).setChecked(true)
 
         main_view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {

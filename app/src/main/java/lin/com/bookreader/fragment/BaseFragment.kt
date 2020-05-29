@@ -8,11 +8,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import java.lang.IllegalStateException
 import javax.inject.Inject
 
 abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel>(private val layoutId: Int) :
     Fragment() {
-    protected lateinit var databinding: DB
+    protected val databinding: DB
+        get() = realBinding
+            ?: throw IllegalStateException("cannot get ViewDataBinding, please check the lifecycle!")
+
+    private var realBinding: DB? = null
+
     @Inject
     protected lateinit var viewModel: VM
 
@@ -22,8 +28,10 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel>(private val la
         savedInstanceState: Bundle?
     ): View? {
         initDaggerInjector()
-        databinding = DataBindingUtil.inflate<DB>(inflater, layoutId, container, false)
-        databinding.lifecycleOwner = this
+        DataBindingUtil.inflate<DB>(inflater, layoutId, container, false).run {
+            realBinding = this
+            lifecycleOwner = viewLifecycleOwner
+        }
         setDatabindingVaribles()
         return databinding.root
     }
@@ -31,4 +39,10 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel>(private val la
     abstract fun initDaggerInjector()
 
     abstract fun setDatabindingVaribles()
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        realBinding?.unbind()
+        realBinding = null
+    }
 }

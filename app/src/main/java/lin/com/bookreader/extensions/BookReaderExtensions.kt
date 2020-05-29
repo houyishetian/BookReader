@@ -1,10 +1,12 @@
 package lin.com.bookreader.extensions
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Point
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -48,4 +50,13 @@ fun Context.showRecyclerViewDialog(dialogSelectBean: DialogSelectBean) {
     }
     dialog.show()
     databinding.dialogBean = dialogSelectBean
+}
+
+fun Activity.hideSoftInput() {
+    window.peekDecorView()?.run {
+        (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
+            windowToken,
+            0
+        )
+    }
 }

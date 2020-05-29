@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
 import lin.com.bookreader.R
 import lin.com.bookreader.adapter.ViewPagerAdapter
+import lin.com.bookreader.extensions.hideSoftInput
 import lin.com.bookreader.fragment.MainBookMarkFragment
 import lin.com.bookreader.fragment.MainScanFragment
 import lin.com.bookreader.fragment.MainSearchFragment
@@ -49,12 +50,13 @@ class MainActivity : AppCompatActivity() {
 
         })
         main_bottom_navitaion_view.setOnNavigationItemSelectedListener {
-            menuItem = it
-            when (menuItem?.itemId) {
+            hideSoftInput()
+            when (it.itemId) {
                 R.id.mainScanFragment -> main_view_pager.currentItem = 0
                 R.id.mainSearchFragment -> main_view_pager.currentItem = 1
                 R.id.mainBookMarkFragment -> main_view_pager.currentItem = 2
             }
+            menuItem = it
             return@setOnNavigationItemSelectedListener false
         }
     }

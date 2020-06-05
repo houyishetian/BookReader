@@ -75,7 +75,4 @@ dependencies {
 
     //leakcanary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
-
-    // multitype
-    implementation 'me.drakeet.multitype:multitype:3.3.0'
 }

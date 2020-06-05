@@ -40,11 +40,6 @@
             android:id="@+id/dialog_select_rcv"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:itemDecoration="@{dialogBean.itemDecoration}"
-            app:itemLayout="@{@layout/item_dialog_select}"
-            app:items="@{dialogBean.list}"
-            app:layoutManager="@string/linear_layout_manager"
-            app:onBindItem="@{dialogBean.binder}"
             app:layout_constraintBottom_toTopOf="@+id/dialog_select_previous_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,20 +49,18 @@
             android:id="@+id/dialog_select_previous_btn"
             style="@style/MainStyleButton"
             android:text="@string/previous_page"
-            android:visibility="@{dialogBean.leftBtn.visible?View.VISIBLE:View.GONE}"
+            android:visibility="@{dialogBean.leftBtnText!=null?View.VISIBLE:View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/dialog_select_next_btn"
-            android:onClick="@{(v)->dialogBean.leftBtn.onClick(v)}"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/dialog_select_next_btn"
             style="@style/MainStyleButton"
             android:text="@string/next_page"
-            android:visibility="@{dialogBean.rightBtn.visible?View.VISIBLE:View.GONE}"
+            android:visibility="@{dialogBean.rightBtnText!=null?View.VISIBLE:View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/dialog_select_previous_btn"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{(v)->dialogBean.rightBtn.onClick(v)}"
             app:layout_constraintStart_toEndOf="@+id/dialog_select_previous_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

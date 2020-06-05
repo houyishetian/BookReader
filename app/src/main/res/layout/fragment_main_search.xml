@@ -62,15 +62,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
-            app:itemDecoration="@{viewModel.itemDecoration}"
-            app:itemLayout="@{@layout/item_main_search_result}"
-            app:items="@{viewModel.list}"
-            app:layoutManager="@string/linear_layout_manager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_input_layout"
-            app:onBindItem="@{(binding,data,positon)->viewModel.bind(binding,data,positon)}" />
+            app:layout_constraintTop_toBottomOf="@id/search_input_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

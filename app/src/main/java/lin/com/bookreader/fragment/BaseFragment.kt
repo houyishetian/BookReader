@@ -8,10 +8,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import lin.com.bookreader.extensions.hideLoading
+import lin.com.bookreader.extensions.showLoading
+import lin.com.bookreader.viewmodels.BaseViewModel
 import javax.inject.Inject
 
-abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel>(private val layoutId: Int) :
+abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel>(private val layoutId: Int) :
     Fragment() {
     protected val databinding: DB
         get() = realBinding
@@ -44,6 +46,12 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel>(private val la
         return databinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.loading.observe(viewLifecycleOwner, loadingObserver)
+        viewModel.commonError.observe(viewLifecycleOwner, commonErrorObserver)
+    }
+
     abstract fun initDaggerInjector()
 
     abstract fun setDatabindingVaribles()
@@ -55,11 +63,11 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel>(private val la
     }
 
     fun showLoading() {
-
+        requireActivity().showLoading()
     }
 
     fun hideLoading() {
-
+        requireActivity().hideLoading()
     }
 
     fun showCommonError() {

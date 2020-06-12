@@ -128,5 +128,6 @@ class MainSearchFragmentViewModel : BaseViewModel() {
 
     val dialogItemClickListener = fun(dialogItemBean:DialogSelectItemBean, position:Int){
         webType.postValue(dialogItemBean.name)
+        loading.postValue(true)
     }
 }

@@ -25,6 +25,7 @@ import lin.com.bookreader.databinding.DialogSelectFromRecyclerViewBinding
 import lin.com.bookreader.databinding.ItemDialogSelectBinding
 import lin.com.bookreader.entity.DialogSelectBean
 import lin.com.bookreader.entity.DialogSelectItemBean
+import lin.com.bookreader.fragment.LoadingFragment
 
 
 fun <T : ViewModel> FragmentActivity.createViewModel(viewModelClass: Class<T>): T =
@@ -89,5 +90,16 @@ fun Activity.hideSoftInput() {
             windowToken,
             0
         )
+    }
+}
+
+fun FragmentActivity.showLoading() {
+    supportFragmentManager.beginTransaction()
+        .add(LoadingFragment(), LoadingFragment::class.java.simpleName).commitAllowingStateLoss()
+}
+
+fun FragmentActivity.hideLoading() {
+    supportFragmentManager.findFragmentByTag(LoadingFragment::class.java.simpleName)?.run {
+        supportFragmentManager.beginTransaction().remove(this).commitAllowingStateLoss()
     }
 }

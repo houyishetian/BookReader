@@ -2,6 +2,8 @@ package lin.com.bookreader.dagger.network.retrofit
 
 import dagger.Module
 import dagger.Provides
+import lin.com.bookreader.models.BookReaderApiModel
+import lin.com.bookreader.models.BookReaderApiModelIml
 import lin.com.bookreader.models.BookReaderApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -36,14 +38,14 @@ class RetrofitModule {
     fun provideWriteTimeout(): Long = 10
 
     @Provides
-    fun provideTimeUnit():TimeUnit = TimeUnit.SECONDS
+    fun provideTimeUnit(): TimeUnit = TimeUnit.SECONDS
 
     @Provides
     fun provideOkHttpClient(
         @Named(connTimeoutKey) connTimeout: Long,
         @Named(readTimeoutKey) readTimeout: Long,
         @Named(writeTimeoutKey) writeTimeout: Long,
-        timeUnit:TimeUnit,
+        timeUnit: TimeUnit,
         interceptor: Interceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
@@ -94,4 +96,8 @@ class RetrofitModule {
     @Provides
     fun provideBookReaderApiService(retrofit: Retrofit): BookReaderApiService =
         retrofit.create(BookReaderApiService::class.java)
+
+    @Provides
+    fun provideBookReaderApiModel(bookReaderApiService: BookReaderApiService): BookReaderApiModel =
+        BookReaderApiModelIml(bookReaderApiService)
 }

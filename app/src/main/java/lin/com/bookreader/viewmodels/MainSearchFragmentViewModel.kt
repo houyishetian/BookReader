@@ -7,7 +7,7 @@ import lin.com.bookreader.entity.Book
 import lin.com.bookreader.entity.DialogSelectBean
 import lin.com.bookreader.entity.DialogSelectItemBean
 
-class MainSearchFragmentViewModel : ViewModel() {
+class MainSearchFragmentViewModel : BaseViewModel() {
 
     val list = listOf(
             Book(

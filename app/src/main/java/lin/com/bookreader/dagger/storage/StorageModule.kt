@@ -6,5 +6,5 @@ import dagger.Module
 @Module
 abstract class StorageModule {
     @Binds
-    abstract fun provideStorage(sharedPrefsStorage: SharedPrefsStorage): SharedPrefsStorage
+    abstract fun provideStorage(sharedPrefsStorage: SharedPrefsStorage): Storage
 }

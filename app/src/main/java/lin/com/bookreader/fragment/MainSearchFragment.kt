@@ -26,6 +26,8 @@ class MainSearchFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.loading.observe(viewLifecycleOwner, loadingObserver)
+        viewModel.commonError.observe(viewLifecycleOwner, commonErrorObserver)
         databinding.searchWebName.setOnClickListener {
             requireActivity().showRecyclerViewDialog(
                 viewModel.dialogSelectBean,
@@ -43,6 +45,5 @@ class MainSearchFragment :
                 dataBinding.bean = itemData
             }
         }
-
     }
 }

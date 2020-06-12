@@ -10,7 +10,7 @@ import lin.com.bookreader.R
 class LoadingFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.LoadingFragment)
+        setStyle(STYLE_NORMAL, R.style.MainDialog)
     }
 
     override fun onCreateView(
@@ -18,7 +18,7 @@ class LoadingFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        isCancelable = true
+        isCancelable = false
         return inflater.inflate(R.layout.fragment_loading, container)
     }
 }

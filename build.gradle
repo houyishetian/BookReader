@@ -15,6 +15,7 @@ buildscript {
         rxandroid_version = '1.2.1'
         rxkotlin_version = '1.0.0'
         leakcanary_version = '2.2'
+        work_version = '2.3.4'
     }
     repositories {
         google()

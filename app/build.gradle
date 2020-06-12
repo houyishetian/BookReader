@@ -75,4 +75,7 @@ dependencies {
 
     //leakcanary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
+
+    // work manager
+    implementation "androidx.work:work-runtime:$work_version"
 }

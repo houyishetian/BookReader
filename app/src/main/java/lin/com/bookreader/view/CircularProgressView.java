@@ -28,25 +28,25 @@ public class CircularProgressView extends View {
     private static final Interpolator ANGLE_INTERPOLATOR = new LinearInterpolator();
     private static final Interpolator SWEEP_INTERPOLATOR = new AccelerateDecelerateInterpolator();
 
-    private int angleAnimatorDuration;
+    private final int angleAnimatorDuration;
 
-    private int sweepAnimatorDuration;
+    private final int sweepAnimatorDuration;
 
-    private int minSweepAngle;
+    private final int minSweepAngle;
 
-    private float mBorderWidth;
+    private final float mBorderWidth;
 
     private final RectF fBounds = new RectF();
     private ObjectAnimator mObjectAnimatorSweep;
     private ObjectAnimator mObjectAnimatorAngle;
     private boolean mModeAppearing = true;
-    private Paint mPaint;
+    private final Paint mPaint;
     private float mCurrentGlobalAngleOffset;
     private float mCurrentGlobalAngle;
 
     private float mCurrentSweepAngle;
     private boolean mRunning;
-    private int mColor;
+    private final int mColor;
 
     public CircularProgressView(Context context) {
         this(context, null);
@@ -176,7 +176,7 @@ public class CircularProgressView extends View {
         }
     }
 
-    private Property<CircularProgressView, Float> mAngleProperty = new Property<CircularProgressView, Float>(Float.class, "angle") {
+    private final Property<CircularProgressView, Float> mAngleProperty = new Property<CircularProgressView, Float>(Float.class, "angle") {
         @Override
         public Float get(CircularProgressView object) {
             return object.getCurrentGlobalAngle();
@@ -188,7 +188,7 @@ public class CircularProgressView extends View {
         }
     };
 
-    private Property<CircularProgressView, Float> mSweepProperty = new Property<CircularProgressView, Float>(Float.class, "arc") {
+    private final Property<CircularProgressView, Float> mSweepProperty = new Property<CircularProgressView, Float>(Float.class, "arc") {
         @Override
         public Float get(CircularProgressView object) {
             return object.getCurrentSweepAngle();

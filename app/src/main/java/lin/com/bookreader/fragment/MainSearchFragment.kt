@@ -39,7 +39,7 @@ class MainSearchFragment :
                 requireContext(),
                 viewModel.list,
                 R.layout.item_main_search_result
-            ) { dataBinding, itemData, position ->
+            ) { dataBinding, itemData, _ ->
                 dataBinding.bean = itemData
             }
         }

@@ -126,7 +126,7 @@ class MainSearchFragmentViewModel : BaseViewModel() {
     // the dialog bean
     val dialogSelectBean = DialogSelectBean(webTypeList)
 
-    val dialogItemClickListener = fun(dialogItemBean:DialogSelectItemBean, position:Int){
+    val dialogItemClickListener = fun(dialogItemBean:DialogSelectItemBean, _:Int){
         webType.postValue(dialogItemBean.name)
         loading.postValue(true)
     }

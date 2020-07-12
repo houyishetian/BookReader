@@ -1,0 +1,27 @@
+repositories {
+    maven {
+        url 'https://maven.aliyun.com/repository/public'
+    }
+    maven {
+        credentials {
+            username aliYunUser
+            password aliYunPassword
+        }
+        url 'https://packages.aliyun.com/maven/repository/2016204-release-XJzeV6/'
+    }
+
+    maven {
+        credentials {
+            username aliYunUser
+            password aliYunPassword
+        }
+        url 'https://packages.aliyun.com/maven/repository/2016204-snapshot-jsoQfh/'
+    }
+    maven {
+        url 'https://maven.aliyun.com/repository/google'
+    }
+    maven {
+        url 'https://maven.aliyun.com/repository/jcenter'
+    }
+}
+ext.rep = repositories
